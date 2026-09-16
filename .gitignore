@@ -1,0 +1,21 @@
+# Dependencies (ห้ามดันขึ้น Git)
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test / WebdriverIO Output & Reports
+.tmp/
+logs/
+coverage/
+
+# OS / Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Environment variables
+.env
