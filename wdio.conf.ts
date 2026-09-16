@@ -1,5 +1,4 @@
 import path from 'path';
-
 export const config: WebdriverIO.Config = {
     runner: 'local',
     port: 4723,
@@ -15,9 +14,21 @@ export const config: WebdriverIO.Config = {
     }],
     logLevel: 'info',
     framework: 'mocha',
-    reporters: ['spec'],
+    reporters: [
+        'spec',
+        ['allure', {
+            outputDir: 'allure-results',
+            disableWebdriverStepsReporting: true,
+            disableWebdriverScreenshotsReporting: false, // บันทึกภาพหน้าจอเมื่อรันพัง
+        }]
+    ],
     mochaOpts: {
         ui: 'bdd',
         timeout: 60000
+    },
+    afterTest: async function (test, context, { error, result, duration, passed, retries }) {
+        if (!passed) {
+            await driver.takeScreenshot();
+        }
     }
 };

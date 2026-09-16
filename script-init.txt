@@ -1,0 +1,9 @@
+
+# 1. สร้างไฟล์ package.json
+npm init -y
+
+# 2. ติดตั้ง WebdriverIO และ TypeScript Dependencies ที่จำเป็น
+npm install --save-dev @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/spec-reporter typescript ts-node
+
+# 3.report testcase
+npm install @wdio/allure-reporter allure-commandline --save-dev

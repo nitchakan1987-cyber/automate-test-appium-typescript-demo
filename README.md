@@ -52,6 +52,43 @@ WebdriverIO จะค้นหาเทสต์ทั้งหมดใน `tes
 apps/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk
 ```
 
+## Allure Report
+
+โปรเจกต์นี้ใช้ `@wdio/allure-reporter` สำหรับเก็บผลการรันเทสต์ และใช้ `allure-commandline` สำหรับสร้างและเปิดรายงาน โดยตั้งค่า reporter ไว้ใน `wdio.conf.ts` แล้ว
+
+หลังจากรันเทสต์ด้วย `npm test` แล้ว ให้สร้างรายงานจากผลลัพธ์ใน `allure-results` และเปิดรายงานด้วยคำสั่ง:
+
+```bash
+npx allure generate allure-results --clean && npx allure open
+```
+
+คำสั่งนี้ทำงานดังนี้:
+
+- `allure generate allure-results --clean`: สร้างรายงาน HTML จากผลการทดสอบ และลบรายงานเดิมก่อนสร้างใหม่
+- `npx allure open`: เปิดรายงานล่าสุดใน browser ผ่าน local web server
+
+ลำดับการใช้งานแบบเต็ม:
+
+```bash
+# Terminal 1: เปิด Appium server
+npx appium --port 4723
+
+# Terminal 2: รัน automated tests
+npm test
+
+# Terminal 2: สร้างและเปิด Allure report
+npx allure generate allure-results --clean && npx allure open
+```
+
+หากต้องการสร้างรายงานไว้ในโฟลเดอร์ที่ระบุเอง สามารถใช้คำสั่ง:
+
+```bash
+npx allure generate allure-results --clean -o allure-report
+npx allure open allure-report
+```
+
+ไฟล์ screenshot จากเทสต์ที่ไม่ผ่านจะถูกแนบไว้ใน Allure report โดยอัตโนมัติ
+
 ## Test Scenarios
 
 ไฟล์ `test/specs/login.test.ts` ครอบคลุมกรณีหลักดังนี้:

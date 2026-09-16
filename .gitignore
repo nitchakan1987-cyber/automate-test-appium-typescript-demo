@@ -10,6 +10,8 @@ yarn-error.log*
 .tmp/
 logs/
 coverage/
+allure-results/
+allure-report/
 
 # OS / Editor Files
 .DS_Store
